@@ -6,7 +6,7 @@
 import scrapy
 
 
-class FinalassItem(scrapy.Item):
+class BJItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    名称 = scrapy.Field()
     pass
