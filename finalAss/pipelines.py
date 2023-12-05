@@ -11,6 +11,8 @@ from itemadapter import ItemAdapter
 from scrapy.exceptions import DropItem
 import csv
 
+from unicodedata import decimal
+
 
 class MyPipeline(object):
     def __init__(self):
@@ -27,7 +29,9 @@ class MyPipeline(object):
                 "板块",
                 "房型",
                 "朝向",
-                "面积",
+                "面积(平米)",
+                "价格(元/月)",
+                "单位面积价格(元/平米/月)"
             ]
         )
 
@@ -40,6 +44,8 @@ class MyPipeline(object):
                 item["房型"],
                 item["朝向"],
                 item["面积"],
+                item["价格"],
+                item["单位面积价格"],
             ]
         )
         return item
@@ -48,28 +54,22 @@ class MyPipeline(object):
         self.file.close()
 
 
-# class bjPipeline(object):
-#     def __init__(self):
-#         self.writer = None
-#         self.file = None
+class bjPipeline(object):
+    def process_item(self, item, spider):
+        if "面积" in item:
+            if item["面积"] != "":
+                numbers = re.findall(r"\d+", item["面积"])
+                numbers = [int(x) for x in numbers]
+                item["面积"] = sum(numbers) / len(numbers)
 
-#     def open_spider(self, spider):
-#         self.file = open(spider.name + ".csv", "w", encoding="utf-8-sig")
-#         self.writer = csv.writer(self.file)
+        if "价格" in item:
+            if item["价格"] != "":
+                numbers = re.findall(r"\d+", item["价格"])
+                numbers = [int(x) for x in numbers]
+                item["价格"] = int(sum(numbers) / len(numbers))
 
-#     def process_item(self, item, spider):
-#         self.writer.writerow(
-#             [
-#                 item["楼盘名称"],
-#                 item["类型"],
-#                 item["地理位置"],
-#                 item["房型"],
-#                 item["面积"],
-#                 item["均价"],
-#                 item["总价"],
-#             ]
-#         )
-#         return item
+        if "单位面积价格" in item:
+            if item["面积"] != "" and item["价格"] != "":
+                item["单位面积价格"] = int(item["价格"] / item["面积"])
 
-#     def close_spider(self, spider):
-#         self.file.close()
+        return item

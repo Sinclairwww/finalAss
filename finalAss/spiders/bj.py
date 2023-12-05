@@ -13,6 +13,7 @@ class BjSpider(scrapy.Spider):
     custom_settings = {
         "ITEM_PIPELINES": {
             "finalAss.pipelines.MyPipeline": 400,
+            "finalAss.pipelines.bjPipeline": 300,
         },
     }
 
@@ -42,5 +43,10 @@ class BjSpider(scrapy.Spider):
             info = each.css("p.content__list--item--des ::text").getall()
             areaList = [s for s in info if "㎡" in s]
             item["面积"] = areaList[0].strip() if len(areaList) > 0 else ""
+
+            item["价格"] = each.css('span.content__list--item-price em::text').get()
+            item["单位面积价格"] = ""
             pass
+
+            yield item
         pass

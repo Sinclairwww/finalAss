@@ -14,4 +14,7 @@ class BJItem(scrapy.Item):
     区域 = scrapy.Field()
     板块 = scrapy.Field()
     面积 = scrapy.Field()
+    价格 = scrapy.Field()
+    单位面积价格 = scrapy.Field()
+
     pass
