@@ -20,6 +20,16 @@ class MyPipeline(object):
     def open_spider(self, spider):
         self.file = open(spider.name + ".csv", "w", newline='', encoding="utf-8-sig")
         self.writer = csv.writer(self.file)
+        self.writer.writerow(
+            [
+                "名称",
+                "区域",
+                "板块",
+                "房型",
+                "朝向",
+                "面积",
+            ]
+        )
 
     def process_item(self, item, spider):
         self.writer.writerow(

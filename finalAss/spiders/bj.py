@@ -14,9 +14,6 @@ class BjSpider(scrapy.Spider):
         "ITEM_PIPELINES": {
             "finalAss.pipelines.MyPipeline": 400,
         },
-        "FIELDS_TO_EXPORT": [
-            "名称",
-        ],
     }
 
     def parse(self, response):
