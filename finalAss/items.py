@@ -9,4 +9,9 @@ import scrapy
 class BJItem(scrapy.Item):
     # define the fields for your item here like:
     名称 = scrapy.Field()
+    房型 = scrapy.Field()
+    朝向 = scrapy.Field()
+    区域 = scrapy.Field()
+    板块 = scrapy.Field()
+    面积 = scrapy.Field()
     pass

@@ -18,16 +18,48 @@ class MyPipeline(object):
         self.file = None
 
     def open_spider(self, spider):
-        self.file = open(spider.name + ".csv", "w", encoding="utf-8-sig")
+        self.file = open(spider.name + ".csv", "w", newline='', encoding="utf-8-sig")
         self.writer = csv.writer(self.file)
 
     def process_item(self, item, spider):
         self.writer.writerow(
             [
                 item["名称"],
+                item["区域"],
+                item["板块"],
+                item["房型"],
+                item["朝向"],
+                item["面积"],
             ]
         )
         return item
 
     def close_spider(self, spider):
         self.file.close()
+
+
+# class bjPipeline(object):
+#     def __init__(self):
+#         self.writer = None
+#         self.file = None
+
+#     def open_spider(self, spider):
+#         self.file = open(spider.name + ".csv", "w", encoding="utf-8-sig")
+#         self.writer = csv.writer(self.file)
+
+#     def process_item(self, item, spider):
+#         self.writer.writerow(
+#             [
+#                 item["楼盘名称"],
+#                 item["类型"],
+#                 item["地理位置"],
+#                 item["房型"],
+#                 item["面积"],
+#                 item["均价"],
+#                 item["总价"],
+#             ]
+#         )
+#         return item
+
+#     def close_spider(self, spider):
+#         self.file.close()
