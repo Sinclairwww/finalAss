@@ -9,9 +9,45 @@ def has_numbers(inputString):
 class BjSpider(scrapy.Spider):
     name = "bj"
     allowed_domains = ["bj.lianjia.com"]
-    start_urls = ["https://bj.lianjia.com/zufang/#contentList"]
-    prefix = "https://bj.lianjia.com/zufang/pg"
-    index = 2
+    start_urls = [
+        "https://bj.lianjia.com/zufang/dongcheng/",
+        "https://bj.lianjia.com/zufang/xicheng/",
+        "https://bj.lianjia.com/zufang/chaoyang/",
+        "https://bj.lianjia.com/zufang/haidian/",
+        "https://bj.lianjia.com/zufang/fengtai/",
+        "https://bj.lianjia.com/zufang/shijingshan/",
+        "https://bj.lianjia.com/zufang/tongzhou/",
+        "https://bj.lianjia.com/zufang/changping/",
+        "https://bj.lianjia.com/zufang/daxing/",
+        "https://bj.lianjia.com/zufang/yizhuangkaifaqu/",
+        "https://bj.lianjia.com/zufang/shunyi/",
+        "https://bj.lianjia.com/zufang/fangshan/",
+        "https://bj.lianjia.com/zufang/mentougou/",
+        "https://bj.lianjia.com/zufang/pinggu/",
+        "https://bj.lianjia.com/zufang/huairou/",
+        "https://bj.lianjia.com/zufang/miyun/",
+        "https://bj.lianjia.com/zufang/yanqing/",
+    ]
+
+    index = {
+        "https://bj.lianjia.com/zufang/dongcheng/": 2,
+        "https://bj.lianjia.com/zufang/xicheng/": 2,
+        "https://bj.lianjia.com/zufang/chaoyang/": 2,
+        "https://bj.lianjia.com/zufang/haidian/": 2,
+        "https://bj.lianjia.com/zufang/fengtai/": 2,
+        "https://bj.lianjia.com/zufang/shijingshan/": 2,
+        "https://bj.lianjia.com/zufang/tongzhou/": 2,
+        "https://bj.lianjia.com/zufang/changping/": 2,
+        "https://bj.lianjia.com/zufang/daxing/": 2,
+        "https://bj.lianjia.com/zufang/yizhuangkaifaqu/": 2,
+        "https://bj.lianjia.com/zufang/shunyi/": 2,
+        "https://bj.lianjia.com/zufang/fangshan/": 2,
+        "https://bj.lianjia.com/zufang/mentougou/": 2,
+        "https://bj.lianjia.com/zufang/pinggu/": 2,
+        "https://bj.lianjia.com/zufang/huairou/": 2,
+        "https://bj.lianjia.com/zufang/miyun/": 2,
+        "https://bj.lianjia.com/zufang/yanqing/": 2,
+    }
 
     custom_settings = {
         "ITEM_PIPELINES": {
@@ -59,10 +95,10 @@ class BjSpider(scrapy.Spider):
             item = self.parse_item(each)
             yield item
 
+        self.url = response.url
         if self.index <= 100:
             next_page = self.prefix + str(self.index) + "/" + "#contentList"
             self.index += 1
             yield scrapy.Request(next_page, callback=self.parse)
         else:
             return None
-
