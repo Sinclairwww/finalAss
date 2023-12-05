@@ -25,7 +25,7 @@ class BjSpider(scrapy.Spider):
             item = BJItem()
             info = each.css("a.content__list--item--aside[title]::attr(title)").extract_first()
             info_list = info.split(" ")
-            item["名称"] = info_list[0]
+            item["名称"] = info_list[0][3:]
 
             typeList = [s for s in info_list if "室" in s or "房间" in s]
             item["房型"] = typeList[0] if len(typeList) > 0 else ""
