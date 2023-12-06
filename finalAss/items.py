@@ -6,7 +6,7 @@
 import scrapy
 
 
-class BJItem(scrapy.Item):
+class BasicItem(scrapy.Item):
     # define the fields for your item here like:
     名称 = scrapy.Field()
     房型 = scrapy.Field()

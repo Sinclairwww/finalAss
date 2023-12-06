@@ -54,7 +54,7 @@ class MyPipeline(object):
         self.file.close()
 
 
-class bjPipeline(object):
+class CalcPipeline(object):
     def process_item(self, item, spider):
         if "面积" in item:
             if item["面积"] != "":
