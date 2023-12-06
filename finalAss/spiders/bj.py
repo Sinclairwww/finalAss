@@ -30,24 +30,26 @@ class BjSpider(scrapy.Spider):
     ]
 
     index = {
-        "https://bj.lianjia.com/zufang/dongcheng/": 2,
-        "https://bj.lianjia.com/zufang/xicheng/": 2,
-        "https://bj.lianjia.com/zufang/chaoyang/": 2,
-        "https://bj.lianjia.com/zufang/haidian/": 2,
-        "https://bj.lianjia.com/zufang/fengtai/": 2,
-        "https://bj.lianjia.com/zufang/shijingshan/": 2,
-        "https://bj.lianjia.com/zufang/tongzhou/": 2,
-        "https://bj.lianjia.com/zufang/changping/": 2,
-        "https://bj.lianjia.com/zufang/daxing/": 2,
-        "https://bj.lianjia.com/zufang/yizhuangkaifaqu/": 2,
-        "https://bj.lianjia.com/zufang/shunyi/": 2,
-        "https://bj.lianjia.com/zufang/fangshan/": 2,
-        "https://bj.lianjia.com/zufang/mentougou/": 2,
-        "https://bj.lianjia.com/zufang/pinggu/": 2,
-        "https://bj.lianjia.com/zufang/huairou/": 2,
-        "https://bj.lianjia.com/zufang/miyun/": 2,
-        "https://bj.lianjia.com/zufang/yanqing/": 2,
+        "dongcheng": 2,
+        "xicheng": 2,
+        "chaoyang": 2,
+        "haidian": 2,
+        "fengtai": 2,
+        "shijingshan": 2,
+        "tongzhou": 2,
+        "changping": 2,
+        "daxing": 2,
+        "yizhuangkaifaqu": 2,
+        "shunyi": 2,
+        "fangshan": 2,
+        "mentougou": 2,
+        "pinggu": 2,
+        "huairou": 2,
+        "miyun": 2,
+        "yanqing": 2,
     }
+
+    prefix = "https://bj.lianjia.com/zufang/"
 
     custom_settings = {
         "ITEM_PIPELINES": {
@@ -95,10 +97,11 @@ class BjSpider(scrapy.Spider):
             item = self.parse_item(each)
             yield item
 
-        self.url = response.url
-        if self.index <= 100:
-            next_page = self.prefix + str(self.index) + "/" + "#contentList"
-            self.index += 1
+        location = response.url.split("/")[4]
+        idx = self.index[location]
+        if idx <= 100:
+            next_page = self.prefix + location + "/pg" + str(idx) + "/" + "#contentList"
+            self.index[location] += 1
             yield scrapy.Request(next_page, callback=self.parse)
         else:
             return None
