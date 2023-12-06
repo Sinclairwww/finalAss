@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26b73391-4bae-4674-bef8-48de6dab4f98" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/finalAss/spiders/cd.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/finalAss/spiders/gz.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/begin.py" beforeDir="false" afterPath="$PROJECT_DIR$/begin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bj.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bj.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finalAss/spiders/basicSpider.py" beforeDir="false" afterPath="$PROJECT_DIR$/finalAss/spiders/basicSpider.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finalAss/spiders/bj.py" beforeDir="false" afterPath="$PROJECT_DIR$/finalAss/spiders/bj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finalAss/spiders/sz.py" beforeDir="false" afterPath="$PROJECT_DIR$/finalAss/spiders/sz.py" afterDir="false" />
-    </list>
+    <list default="true" id="26b73391-4bae-4674-bef8-48de6dab4f98" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +76,7 @@
       <workItem from="1701786743410" duration="138000" />
       <workItem from="1701786891082" duration="1597000" />
       <workItem from="1701852696575" duration="2966000" />
-      <workItem from="1701869070252" duration="4818000" />
+      <workItem from="1701869070252" duration="4985000" />
     </task>
     <servers />
   </component>
