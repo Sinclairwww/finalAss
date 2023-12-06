@@ -1,3 +1,5 @@
+import time
+
 import scrapy
 from finalAss.items import BasicItem
 
@@ -62,6 +64,7 @@ class BasicSpider(scrapy.Spider):
         location = response.url.split("/")[4]
         idx = self.index[location]
         if idx <= 100:
+            time.sleep(1)
             next_page = self.prefix + location + "/pg" + str(idx) + "/" + "#contentList"
             self.index[location] += 1
             yield scrapy.Request(next_page, callback=self.parse)

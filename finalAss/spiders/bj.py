@@ -1,5 +1,3 @@
-import scrapy
-
 from finalAss.spiders import basicSpider
 
 
@@ -44,5 +42,4 @@ class BjSpider(basicSpider.BasicSpider):
         "miyun": 2,
         "yanqing": 2,
     }
-
     prefix = "https://bj.lianjia.com/zufang/"
