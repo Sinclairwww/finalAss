@@ -1,4 +1,3 @@
-import matplotlib
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -29,9 +28,9 @@ class DataAnalyzer:
 
         self.unit_price_summary = {
             "单位面积价格均价": round(unit_price_stats["mean"], 2),
-            "单位面积价格最高价": int(unit_price_stats["max"]),
-            "单位面积价格最低价": int(unit_price_stats["min"]),
-            "单位面积价格中位数": int(unit_price_stats["50%"]),
+            "单位面积价格最高价": round(unit_price_stats["max"], 2),
+            "单位面积价格最低价": round(unit_price_stats["min"], 2),
+            "单位面积价格中位数": round(unit_price_stats["50%"], 2),
         }
 
     def get_price_summary(self):
@@ -41,8 +40,9 @@ class DataAnalyzer:
         return self.unit_price_summary
 
 
-# Example usage:
-analyzer = DataAnalyzer("data/bj.csv")
-analyzer.calculate_statistics()
-print(analyzer.get_price_summary())
-print(analyzer.get_unit_price_summary())
+if __name__ == "__main__":
+    # Example usage:
+    analyzer = DataAnalyzer("data/bj.csv")
+    analyzer.calculate_statistics()
+    print(analyzer.get_price_summary())
+    print(analyzer.get_unit_price_summary())
