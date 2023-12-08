@@ -7,7 +7,14 @@ def analyze_housing_affordability(file_path, city_name):
     data = pd.read_csv(file_path)
 
     # Beijing's per capita GDP
-    gdp_per_capita = 190000  # in Yuan
+    GDP = {
+        "北京": 190000,
+        "上海": 180000,
+        "广州": 150000,
+        "深圳": 180000,
+        "成都": 100000,
+    }
+    gdp_per_capita = GDP[city_name]  # in Yuan
 
     # Calculating the number of square meters of housing that can be afforded for a year with the GDP
     data["affordable_area_sqm"] = gdp_per_capita / (data["单位面积价格(元/平米/月)"] * 12)
@@ -59,6 +66,8 @@ def analyze_housing_affordability(file_path, city_name):
 
 
 if __name__ == "__main__":
+    GDP_per_capita = 190000  # in Yuan
+
     # analyze_housing_affordability("data/bj.csv", "北京")
     analyze_housing_affordability("data/sh.csv", "上海")
     analyze_housing_affordability("data/gz.csv", "广州")
